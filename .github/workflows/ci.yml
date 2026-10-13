@@ -27,7 +27,7 @@ jobs:
         run: |
           HOST=$(rustc -vV | sed -n 's/^host: //p')
           mkdir -p dist/bin
-          cp "taraskevizer-rs/target/debug/taraskevizer-cli" "dist/bin/tarask-$HOST"
+          cp "taraskevizer-rs/target/debug/tarask" "dist/bin/tarask-$HOST"
           node dist/cli.js --no-color 'планета' | grep -q 'плянэта'
           echo 'планета' | node dist/cli.js --no-color | grep -q 'плянэта'
           node dist/cli.js --no-color -l 'планета' | grep -q 'planeta'

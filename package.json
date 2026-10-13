@@ -50,7 +50,7 @@
 		"lint": "cargo clippy --all-targets --all-features --locked --manifest-path ./taraskevizer-rs/Cargo.toml",
 		"test": "cargo test --locked --workspace --manifest-path ./taraskevizer-rs/Cargo.toml",
 		"test:wasm": "wasm-pack test --node taraskevizer-rs/crates/wasm",
-		"json": "DEST_DIR=json cargo run --locked --manifest-path ./taraskevizer-rs/Cargo.toml -p taraskevizer-core --example gen_dict_json",
+		"json": "DEST_DIR=json cargo run --locked --manifest-path ./taraskevizer-rs/Cargo.toml -p taraskevizer --example gen_dict_json",
 		"docs:dev": "cd website && bun run dev",
 		"docs:build": "cd website && bun install && bun run build",
 		"docs:preview": "cd website && bun run preview"

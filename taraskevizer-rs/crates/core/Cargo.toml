@@ -1,8 +1,16 @@
 [package]
-name = "taraskevizer-core"
+name = "taraskevizer"
 version = "11.0.4"
 edition = "2021"
+rust-version = "1.73"
 description = "Belarusian orthography converter (Narkamauka → Taraskevica)"
+license = "MIT"
+repository = "https://github.com/GooseOb/taraskevizer"
+homepage = "https://gooseob.github.io/taraskevizer/"
+documentation = "https://gooseob.github.io/taraskevizer/"
+readme = "../../../README.md"
+keywords = ["belarusian", "taraskevica", "orthography", "transliteration", "text-processing"]
+categories = ["text-processing"]
 
 [dependencies]
 regex = "1"

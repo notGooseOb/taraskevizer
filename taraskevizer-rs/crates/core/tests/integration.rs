@@ -1,8 +1,6 @@
 use std::borrow::Cow;
 
-use taraskevizer_core::{
-    alphabetic, config::*, html_config_options, phonetic, tarask, HTML_WRAPPERS,
-};
+use taraskevizer::{alphabetic, config::*, html_config_options, phonetic, tarask, HTML_WRAPPERS};
 
 fn default_cfg() -> TaraskConfig {
     TaraskConfig::default()

@@ -157,6 +157,12 @@ With bun:
 bun add -g taraskevizer
 ```
 
+## Via cargo
+
+```sh
+cargo install tarask
+```
+
 ## Usage
 
 ```sh
@@ -202,6 +208,19 @@ make it executable (not needed on Windows) and run it:
 ```sh
 chmod +x tarask-x86_64-unknown-linux-gnu
 ./tarask-x86_64-unknown-linux-gnu --latin 'планета'
+```
+
+# Rust library
+
+```sh
+cargo add taraskevizer
+```
+
+```rust
+use taraskevizer::{tarask, TaraskConfig};
+
+let cfg = TaraskConfig::default();
+assert_eq!(tarask("планета", &cfg), "плянэта");
 ```
 
 # Known bugs

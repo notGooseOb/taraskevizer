@@ -2,13 +2,13 @@ use std::io::{self, IsTerminal, Read, Write};
 
 use clap::Parser;
 use rayon::prelude::*;
-use taraskevizer_core::config::{Alphabet, JMode, TaraskConfig, VariationMode};
-use taraskevizer_core::text::split_into_chunks;
-use taraskevizer_core::wrappers::{ANSI_COLOR_WRAPPERS, HTML_WRAPPERS};
-use taraskevizer_core::{alphabetic, phonetic, tarask};
+use taraskevizer::config::{Alphabet, JMode, TaraskConfig, VariationMode};
+use taraskevizer::text::split_into_chunks;
+use taraskevizer::wrappers::{ANSI_COLOR_WRAPPERS, HTML_WRAPPERS};
+use taraskevizer::{alphabetic, phonetic, tarask};
 
 // Wrapper sets (ANSI_COLOR_WRAPPERS / HTML_WRAPPERS) and the `variation_*`
-// helpers now live in `taraskevizer_core::wrappers` (mirroring `src/wrappers.ts`).
+// helpers now live in `taraskevizer::wrappers` (mirroring `src/wrappers.ts`).
 
 // ── Short-arg expansion ─────────────────────────────────────────
 // Match JS parse-args.ts behavior: multi-char short flags like -nc, -nec, -abc

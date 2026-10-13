@@ -18,7 +18,7 @@
 
 use std::collections::BTreeSet;
 use std::fmt::Write as _;
-use taraskevizer_core::dict::{flat_wordlist::WORD_LIST as FLAT, CompiledDict, DictEntry};
+use taraskevizer::dict::{flat_wordlist::WORD_LIST as FLAT, CompiledDict, DictEntry};
 
 const WORDLIST_RS: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/src/dict/wordlist.rs");
 const CORPUS: &str = concat!(

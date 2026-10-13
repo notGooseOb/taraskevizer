@@ -573,17 +573,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "taraskevizer-cli"
+name = "tarask"
 version = "11.0.4"
 dependencies = [
  "clap",
  "num_cpus",
  "rayon",
- "taraskevizer-core",
+ "taraskevizer",
 ]
 
 [[package]]
-name = "taraskevizer-core"
+name = "taraskevizer"
 version = "11.0.4"
 dependencies = [
  "fancy-regex",
@@ -601,7 +601,7 @@ version = "11.0.4"
 dependencies = [
  "getrandom",
  "js-sys",
- "taraskevizer-core",
+ "taraskevizer",
  "wasm-bindgen",
  "wasm-bindgen-test",
 ]

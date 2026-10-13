@@ -1,7 +1,7 @@
 use std::process::Command;
 
 fn run_cli(args: &[&str]) -> String {
-    let bin = env!("CARGO_BIN_EXE_taraskevizer-cli");
+    let bin = env!("CARGO_BIN_EXE_tarask");
     let output = Command::new(bin)
         .args(args)
         .output()

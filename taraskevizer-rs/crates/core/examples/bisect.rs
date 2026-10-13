@@ -16,14 +16,14 @@
 use std::collections::BTreeSet;
 use std::fmt::Write as _;
 use std::io::Write as _;
-use taraskevizer_core::config::{Alphabet, JMode, TaraskConfig, VariationMode};
-use taraskevizer_core::dict::{CompiledDict, DictEntry, WORD_LIST};
-use taraskevizer_core::pipeline::{
+use taraskevizer::config::{Alphabet, JMode, TaraskConfig, VariationMode};
+use taraskevizer::dict::{CompiledDict, DictEntry, WORD_LIST};
+use taraskevizer::pipeline::{
     collapse_whitespaces, step_prepare, step_resolve_special_syntax,
     step_store_splitted_abc_converted_orig, step_to_lower_case, step_trim, PipelineContext,
 };
-use taraskevizer_core::tarask;
-use taraskevizer_core::text::split_into_chunks;
+use taraskevizer::tarask;
+use taraskevizer::text::split_into_chunks;
 
 const WORDLIST_RS: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/src/dict/wordlist.rs");
 const DEFAULT_DUMP: &str = concat!(

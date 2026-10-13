@@ -37,7 +37,7 @@ jobs:
           for crate in core cli wasm; do
             CRATE_VERSION=$(grep '^version =' taraskevizer-rs/crates/$crate/Cargo.toml | head -1 | sed 's/.*"\(.*\)".*/\1/')
             if [[ "$CRATE_VERSION" != "$PKG_VERSION" ]]; then
-              echo "Version mismatch: taraskevizer-$crate is $CRATE_VERSION, package.json is $PKG_VERSION"
+              echo "Version mismatch: taraskevizer-rs/crates/$crate is $CRATE_VERSION, package.json is $PKG_VERSION"
               exit 1
             fi
           done

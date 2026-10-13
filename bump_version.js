@@ -112,11 +112,7 @@ const crateOuts = crateRaws.map((raw, i) => {
 });
 
 // Cargo.lock: only the three workspace package stanzas.
-const lockNames = new Set([
-	'taraskevizer-core',
-	'taraskevizer-cli',
-	'taraskevizer-wasm',
-]);
+const lockNames = new Set(['taraskevizer', 'tarask', 'taraskevizer-wasm']);
 let lockPkgName = null;
 let lockCount = 0;
 const lockOut = lockRaw

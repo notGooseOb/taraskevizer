@@ -1,11 +1,23 @@
 [package]
-name = "taraskevizer-cli"
+name = "tarask"
 version = "11.0.4"
 edition = "2021"
+rust-version = "1.73"
 description = "CLI for taraskevizer — Belarusian orthography converter"
+license = "MIT"
+repository = "https://github.com/GooseOb/taraskevizer"
+homepage = "https://gooseob.github.io/taraskevizer/"
+documentation = "https://gooseob.github.io/taraskevizer/"
+readme = "../../../README.md"
+keywords = ["belarusian", "taraskevica", "orthography", "transliteration", "cli"]
+categories = ["text-processing", "command-line-utilities"]
+
+[[bin]]
+name = "tarask"
+path = "src/main.rs"
 
 [dependencies]
-taraskevizer-core = { path = "../core" }
+taraskevizer = { version = "11.0.4", path = "../core" }
 clap = { version = "4", features = ["derive"] }
 rayon = "1"
 num_cpus = "1"

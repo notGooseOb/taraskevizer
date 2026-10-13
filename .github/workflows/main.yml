@@ -75,7 +75,7 @@ jobs:
         run: |
           HOST=$(rustc -vV | sed -n 's/^host: //p')
           mkdir -p dist/bin
-          cp "taraskevizer-rs/target/debug/taraskevizer-cli" "dist/bin/tarask-$HOST"
+          cp "taraskevizer-rs/target/debug/tarask" "dist/bin/tarask-$HOST"
           node dist/cli.js --no-color 'планета' | grep -q 'плянэта'
           echo 'планета' | node dist/cli.js --no-color | grep -q 'плянэта'
           node dist/cli.js --no-color -l 'планета' | grep -q 'planeta'
@@ -126,12 +126,12 @@ jobs:
       - name: Build CLI
         env:
           CARGO_PROFILE_RELEASE_STRIP: ${{ matrix.strip }}
-        run: cargo build --release --locked --manifest-path ./taraskevizer-rs/Cargo.toml -p taraskevizer-cli --target ${{ matrix.target }}
+        run: cargo build --release --locked --manifest-path ./taraskevizer-rs/Cargo.toml -p tarask --target ${{ matrix.target }}
 
       - name: Stage binary
         shell: bash
         run: |
-          BIN="taraskevizer-rs/target/${{ matrix.target }}/release/taraskevizer-cli"
+          BIN="taraskevizer-rs/target/${{ matrix.target }}/release/tarask"
           OUT="tarask-${{ matrix.target }}"
           if [[ "${{ matrix.target }}" == *windows* ]]; then
             BIN="$BIN.exe"
@@ -285,6 +285,8 @@ jobs:
       id-token: write
       contents: read
     steps:
+      - uses: actions/checkout@v7
+
       - uses: actions/setup-node@v7
         with:
           registry-url: "https://registry.npmjs.org"
@@ -297,6 +299,23 @@ jobs:
           path: .
 
       - run: npm publish
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: taraskevizer-rs
+          key: publish
+      - name: cargo publish (taraskevizer, then tarask)
+        working-directory: taraskevizer-rs
+        run: |
+          cargo publish --locked -p taraskevizer
+          for i in $(seq 1 30); do
+            cargo publish --locked -p tarask --dry-run >/dev/null 2>&1 && break
+            echo "waiting for taraskevizer $i/30 to hit the index..."
+            sleep 20
+          done
+          cargo publish --locked -p tarask
 
       - run: |
           curl -XPOST -u "${{secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/GooseOb/taraskevizatar/actions/workflows/build.yml/dispatches --data '{"ref": "main"}'

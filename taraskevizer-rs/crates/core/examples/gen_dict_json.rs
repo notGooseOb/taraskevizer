@@ -15,7 +15,7 @@
 
 use std::{path::PathBuf, process::ExitCode};
 
-use taraskevizer_core::dict::{json::to_json_batches, PHONETIC, WORD_LIST};
+use taraskevizer::dict::{json::to_json_batches, PHONETIC, WORD_LIST};
 
 fn data_dir() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("src/dict/data")

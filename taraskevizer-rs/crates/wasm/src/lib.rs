@@ -23,7 +23,7 @@
 //! ```
 
 use js_sys::Reflect;
-use taraskevizer_core::{
+use taraskevizer::{
     config::{Alphabet, JMode, TaraskConfig as CoreConfig, VariationMode},
     wrappers::{ANSI_COLOR_WRAPPERS, HTML_WRAPPERS},
 };
@@ -32,7 +32,7 @@ use wasm_bindgen::prelude::*;
 /// Which predefined wrapper set is active.
 ///
 /// Custom JS-function wrappers cannot cross the WASM boundary, so only the
-/// predefined sets from `taraskevizer_core::wrappers` are exposed.
+/// predefined sets from `taraskevizer::wrappers` are exposed.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
 enum WrappersKind {
     /// No highlighting (`wrappers: null` in JS).
@@ -410,19 +410,19 @@ impl WasmConfig {
     #[cfg(test)]
     fn tarask_inner(text: &str, config: Option<&Self>) -> String {
         let cfg = Self::core_config(config);
-        taraskevizer_core::tarask(text, &cfg)
+        taraskevizer::tarask(text, &cfg)
     }
 
     #[cfg(test)]
     fn alphabetic_inner(text: &str, config: Option<&Self>) -> String {
         let cfg = Self::core_config(config);
-        taraskevizer_core::alphabetic(text, &cfg)
+        taraskevizer::alphabetic(text, &cfg)
     }
 
     #[cfg(test)]
     fn phonetic_inner(text: &str, config: Option<&Self>) -> String {
         let cfg = Self::core_config(config);
-        taraskevizer_core::phonetic(text, &cfg)
+        taraskevizer::phonetic(text, &cfg)
     }
 }
 
@@ -463,7 +463,7 @@ fn resolve_config(config: &JsValue) -> Result<CoreConfig, JsError> {
 #[wasm_bindgen(js_name = tarask)]
 pub fn tarask_js(text: &str, config: JsValue) -> Result<String, JsError> {
     let cfg = resolve_config(&config)?;
-    Ok(taraskevizer_core::tarask(text, &cfg))
+    Ok(taraskevizer::tarask(text, &cfg))
 }
 
 /// Alphabet-only conversion (no Taraskevization).
@@ -477,7 +477,7 @@ pub fn tarask_js(text: &str, config: JsValue) -> Result<String, JsError> {
 #[wasm_bindgen(js_name = alphabetic)]
 pub fn alphabetic_js(text: &str, config: JsValue) -> Result<String, JsError> {
     let cfg = resolve_config(&config)?;
-    Ok(taraskevizer_core::alphabetic(text, &cfg))
+    Ok(taraskevizer::alphabetic(text, &cfg))
 }
 
 /// Phonetic conversion (experimental in the reference implementation).
@@ -491,12 +491,12 @@ pub fn alphabetic_js(text: &str, config: JsValue) -> Result<String, JsError> {
 #[wasm_bindgen(js_name = phonetic)]
 pub fn phonetic_js(text: &str, config: JsValue) -> Result<String, JsError> {
     let cfg = resolve_config(&config)?;
-    Ok(taraskevizer_core::phonetic(text, &cfg))
+    Ok(taraskevizer::phonetic(text, &cfg))
 }
 
 /// Split text into `n` worker-ready chunks for parallel conversion.
 ///
-/// Mirrors the CLI's chunking (`taraskevizer_core::text::split_into_chunks`):
+/// Mirrors the CLI's chunking (`taraskevizer::text::split_into_chunks`):
 /// cuts after a spacing char at/after every `len / n` bytes, never inside
 /// `<…>` tags or after apostrophe-likes. There is no upper bound on chunk
 /// size, so cuts always land on delimiters and chunked conversion matches a
@@ -512,7 +512,7 @@ pub fn phonetic_js(text: &str, config: JsValue) -> Result<String, JsError> {
 /// ```
 #[wasm_bindgen(js_name = splitIntoChunks)]
 pub fn split_into_chunks_js(text: &str, n: usize) -> js_sys::Array {
-    taraskevizer_core::text::split_into_chunks(text, n)
+    taraskevizer::text::split_into_chunks(text, n)
         .iter()
         .map(|&(s, e)| JsValue::from(&text[s..e]))
         .collect()
@@ -744,7 +744,7 @@ mod tests {
     }
 
     fn reassemble(text: &str, n: usize) -> Vec<String> {
-        taraskevizer_core::text::split_into_chunks(text, n)
+        taraskevizer::text::split_into_chunks(text, n)
             .iter()
             .map(|&(s, e)| text[s..e].to_owned())
             .collect()
@@ -809,7 +809,7 @@ mod tests {
         // Mirrors the TS `htmlConfigOptions()`: HTML wrappers, no `g`,
         // `<br>` newlines and `"&lt"` for `<`.
         let cfg = WasmConfig {
-            inner: taraskevizer_core::html_config_options(),
+            inner: taraskevizer::html_config_options(),
             wrappers_kind: WrappersKind::Html,
         };
         assert_eq!(cfg.wrappers(), "html");
