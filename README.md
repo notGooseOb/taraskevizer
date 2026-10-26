@@ -104,9 +104,9 @@ variations are mentioned in a `data-l` attribute,
 separated with commas.
 
 ```html
-<tarL data-l='variation2,variation3'>variation1</tarL>
+<tarL data-l="variation2,variation3">variation1</tarL>
 
-<tarL data-l='Горадня'>Гродна</tarL>
+<tarL data-l="Горадня">Гродна</tarL>
 ```
 
 ## tarH
@@ -194,13 +194,13 @@ bunx taraskevizer [options] text
 
 Every release ships standalone `tarask` executables for these platforms:
 
-| OS      | Architecture            | Asset                                |
-| ------- | ----------------------- | ------------------------------------ |
-| Linux   | x64                     | `tarask-x86_64-unknown-linux-gnu`    |
-| Linux   | ARM64                   | `tarask-aarch64-unknown-linux-gnu`   |
-| macOS   | x64 (Intel)             | `tarask-x86_64-apple-darwin`         |
-| macOS   | ARM64 (Apple Silicon)   | `tarask-aarch64-apple-darwin`        |
-| Windows | x64                     | `tarask-x86_64-pc-windows-msvc.exe`  |
+| OS      | Architecture          | Asset                               |
+| ------- | --------------------- | ----------------------------------- |
+| Linux   | x64                   | `tarask-x86_64-unknown-linux-gnu`   |
+| Linux   | ARM64                 | `tarask-aarch64-unknown-linux-gnu`  |
+| macOS   | x64 (Intel)           | `tarask-x86_64-apple-darwin`        |
+| macOS   | ARM64 (Apple Silicon) | `tarask-aarch64-apple-darwin`       |
+| Windows | x64                   | `tarask-x86_64-pc-windows-msvc.exe` |
 
 Download the file from [GitHub releases](https://github.com/GooseOb/taraskevizer/releases),
 make it executable (not needed on Windows) and run it:
@@ -230,7 +230,3 @@ assert_eq!(tarask("планета", &cfg), "плянэта");
 `Ня` should appear before a word where the first syllable is stressed.
 At the moment, there is no way to check exactly if it is stressed.
 Algorithm makes some heuristics, but that's not enough to cover all cases.
-
-# Dependency graph of the project files
-
-![Dependency graph](https://gooseob.github.io/taraskevizer/graph.png)
