@@ -10,8 +10,6 @@ auto-generated compare link below it.
 
 ## [11.0.5]
 
-## [11.0.5]
-
 ### Fixed
 
 - Text inside parentheses was incorrectly detected as part of variation.
