@@ -601,6 +601,25 @@ fn test_multiline_html() {
     }
 }
 
+#[test]
+fn test_html_variation_preserves_whitespace() {
+    let cfg = html_config_options();
+    let cases: &[(&str, &str)] = &[
+        (
+            "Гродна\nплан",
+            "<tarL data-l='Горадня'>Гродна</tarL><br>пл<tarF>я</tarF>н",
+        ),
+        (
+            "Гродна\tплан",
+            "<tarL data-l='Горадня'>Гродна</tarL>\tпл<tarF>я</tarF>н",
+        ),
+    ];
+    for (input, expected) in cases {
+        let result = tarask(input, &cfg);
+        assert_eq!(&result, expected, "input: {input:?}");
+    }
+}
+
 // ===== nbsp preservation =====
 // JS: test/cases/taraskevization.ts → embedded
 
@@ -652,6 +671,18 @@ fn test_variations() {
         ..Default::default()
     };
     assert_eq!(tarask("Гродна", &cfg_first), "Горадня");
+}
+
+#[test]
+fn test_html_literal_parentheses_with_nested_variation() {
+    let cfg = html_config_options();
+    let input = "Каб завяршыць наладку двухэтапнай праверкі, праверце вашу электронную пошту (не забудзьцеся зазірнуць у папку са спамам) і ўвядзіце код, які мы толькі што адправілі вам.";
+    let expected = "Каб завяршыць наладку двухэтапнай праверкі, праверце вашу электронную пошту (не забудзьцеся зазірнуць у <tarL data-l='тэч'>пап</tarL>ку са спамам) і ўвядзіце код, які мы толькі што адправілі вам.";
+    assert_eq!(tarask(input, &cfg), expected);
+
+    let input2 = "а (у\tпапку\tса\tспамам) а";
+    let expected2 = "а (у\t<tarL data-l='тэч'>пап</tarL>ку\tса\tспамам) а";
+    assert_eq!(tarask(input2, &cfg), expected2);
 }
 
 // ===== highlighting (diff-based) =====

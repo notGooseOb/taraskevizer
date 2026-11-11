@@ -7,4 +7,4 @@ title: "TaraskWrappers"
 
 > **TaraskWrappers** = `"none"` \| `"html"` \| `"ansi"`
 
-Defined in: [config.ts:16](https://github.com/GooseOb/taraskevizer/blob/e358e55fe5ef50b1a4582e71233d5588697f1592/src/config.ts#L16)
+Defined in: [config.ts:16](https://github.com/GooseOb/taraskevizer/blob/14497d7721ae83448be5a114d84ea2689598f33d/src/config.ts#L16)

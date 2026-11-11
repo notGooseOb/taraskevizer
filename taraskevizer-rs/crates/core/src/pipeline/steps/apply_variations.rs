@@ -83,9 +83,20 @@ pub fn step_apply_variations(ctx: &mut PipelineContext) {
         match after.find(')') {
             Some(rel) => {
                 let end = i + 1 + rel + 1; // one past `)`.
+                let matched = &text[i..end];
+                // Variation markup is always word-internal (the dictionary
+                // never inserts a space into a group), while `step_prepare`
+                // always puts a space next to a literal source `(`, so a
+                // literal space here means a parenthetical from the source
+                // text. Resume after this `(` to still find groups nested
+                // inside.
+                if matched.contains(' ') {
+                    i += 1;
+                    continue;
+                }
                 out.push_str(&text[flush..i]);
                 push_variation(
-                    &text[i..end],
+                    matched,
                     ctx.cfg.variations,
                     ctx.cfg.wrappers.as_ref().map(|w| &w.variable),
                     &mut out,

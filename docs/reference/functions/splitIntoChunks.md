@@ -7,7 +7,7 @@ title: "splitIntoChunks"
 
 > **splitIntoChunks**(`text`, `chunks`): `string`[]
 
-Defined in: [index.ts:74](https://github.com/GooseOb/taraskevizer/blob/e358e55fe5ef50b1a4582e71233d5588697f1592/src/index.ts#L74)
+Defined in: [index.ts:74](https://github.com/GooseOb/taraskevizer/blob/14497d7721ae83448be5a114d84ea2689598f33d/src/index.ts#L74)
 
 Split text into worker-ready chunks for parallel conversion.
 

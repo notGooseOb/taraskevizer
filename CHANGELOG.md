@@ -8,6 +8,12 @@ workflow extracts the section matching the tag and prepends it to the release
 body. `generate_release_notes` stays on, so GitHub still appends the
 auto-generated compare link below it.
 
+## [11.0.5]
+
+### Fixed
+
+- Text inside parentheses was incorrectly detected as part of variation.
+
 ## [11.0.4]
 
 ### Fixed
