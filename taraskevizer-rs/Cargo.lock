@@ -574,7 +574,7 @@ dependencies = [
 
 [[package]]
 name = "tarask"
-version = "11.0.4"
+version = "11.0.5"
 dependencies = [
  "clap",
  "num_cpus",
@@ -584,7 +584,7 @@ dependencies = [
 
 [[package]]
 name = "taraskevizer"
-version = "11.0.4"
+version = "11.0.5"
 dependencies = [
  "fancy-regex",
  "memchr",
@@ -597,7 +597,7 @@ dependencies = [
 
 [[package]]
 name = "taraskevizer-wasm"
-version = "11.0.4"
+version = "11.0.5"
 dependencies = [
  "getrandom",
  "js-sys",
